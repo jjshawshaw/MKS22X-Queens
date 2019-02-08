@@ -38,7 +38,32 @@ public class QueenBoard{
     }
   }
 
-//private boolean removeQueen(int r, int c)
+public boolean removeQueen(int r, int c){
+if (board[r][c] >= 0) return false;
+else{
+  board[r][c] = 0;
+  for (int x = c + 1; x < board.length; x++){
+    board[r][x] -= 1;
+  }
+  int y = r + 1;
+  for (int x = c + 1; x < board.length; x++){
+    if (y >= board.length) x = board.length;
+    else {
+      board[y][x] -= 1;
+      y++;
+    }
+  }
+  y = r - 1;
+  for (int x = c + 1; x < board.length; x++){
+    if (y < 0) x = board.length;
+    else{
+      board[y][x] -= 1;
+      y--;
+    }
+  }
+  return true;
+}
+}
 
   /**
  *@return The output string formatted as follows:
