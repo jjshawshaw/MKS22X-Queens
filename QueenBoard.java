@@ -3,29 +3,36 @@ public class QueenBoard{
 
     public QueenBoard(int size){
       board = new int[size][size];
-      for (int i = 0; i < size; i++){
-        board[i][i] = 0;
+      for (int x = 0; x < size; x++){
+        for (int y = 0; y < size; y++){
+          board[y][x] = 0;
       }
     }
+  }
 
 
-  private boolean addQueen(int r, int c){
+  public boolean addQueen(int r, int c){
     if (board[r][c] > 0) return false;
     else{
       board[r][c] = -1;
-      for (int y = c + 1; y < board[0].length; y++){
-        board[r][c] += 1;
+      for (int x = c + 1; x < board.length; x++){
+        board[r][x] += 1;
       }
-      int x = r + 1;
-      for (int y = c + 1; y < board[0].length; y++){
-        if (x >= board.length) y = board[0].length;
-        board[x][c] += 1;
-        x++;
+      int y = r + 1;
+      for (int x = c + 1; x < board.length; x++){
+        if (y >= board.length) x = board.length;
+        else {
+          board[y][x] += 1;
+          y++;
+        }
       }
-      for (int y = c + 1; y < board[0].length; y++){
-        if (x < 0) y = board[0].length;
-        board[x][c] += 1;
-        x--;
+      y = r - 1;
+      for (int x = c + 1; x < board.length; x++){
+        if (y < 0) x = board.length;
+        else{
+          board[y][x] += 1;
+          y--;
+        }
       }
       return true;
     }
@@ -48,7 +55,16 @@ public class QueenBoard{
  *excludes the character up to the *)
  */
 
- //public String toString(){}
+ public String toString(){
+   String out = "";
+   for (int y = 0; y < board.length; y++){
+     for (int x = 0; x < board.length; x++){
+       out += board[y][x] + " ";
+   }
+   out += "\n";
+ }
+ return out;
+ }
 
 
 
