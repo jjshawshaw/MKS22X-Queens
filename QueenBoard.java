@@ -3,8 +3,12 @@ public class QueenBoard{
 
     public QueenBoard(int size){
       board = new int[size][size];
-      for (int x = 0; x < size; x++){
-        for (int y = 0; y < size; y++){
+      clear();
+    }
+
+  private void clear(){
+    for (int x = 0; x < board.length; x++){
+      for (int y = 0; y < board.length; y++){
           board[y][x] = 0;
       }
     }
@@ -123,7 +127,24 @@ else{
  *@r  eturn the number of solutions found, and leaves the board filled with only 0's
  *@throws IllegalStateException when the board starts with any non-zero value
  */
-// public int countSolutions(){}
+ public int countSolutions(){
+clear();
+return s(0, 0);
+}
 
+private int s(int x, int count){
+  for (int y = 0; y < board.length; y++){
+    if (board[y][x] == 0){
+      addQueen(y, x);
+      System.out.println(toString());
+      if (x + 1 != board.length){
+         s(x + 1, count);
+         removeQueen(y, x);
+      }else count += 1;
+    }
+  }
+  clear();
+  return count;
+}
 
 }
