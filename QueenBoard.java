@@ -11,7 +11,7 @@ public class QueenBoard{
   }
 
 
-  public boolean addQueen(int r, int c){
+  private boolean addQueen(int r, int c){
     if (board[r][c] > 0) return false;
     else{
       board[r][c] = -1;
@@ -38,7 +38,7 @@ public class QueenBoard{
     }
   }
 
-public boolean removeQueen(int r, int c){
+private boolean removeQueen(int r, int c){
 if (board[r][c] >= 0) return false;
 else{
   board[r][c] = 0;
@@ -103,7 +103,21 @@ else{
  *@throws IllegalStateException when the board starts with any non-zero value
 
  */
-// public boolean solve(){}
+ public boolean solve(){
+   return s(0);
+ }
+ private boolean s(int x){
+   if (x == board.length) return true;
+   for (int y = 0; y < board.length; y++){
+     if (board[y][x] == 0){
+       addQueen(y, x);
+      // System.out.println(toString());
+       if (!s(x + 1)) removeQueen(y, x);
+       else return true;
+     }
+   }
+   return false;
+ }
 
  /**
  *@r  eturn the number of solutions found, and leaves the board filled with only 0's
