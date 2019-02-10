@@ -84,7 +84,9 @@ else{
    String out = "";
    for (int y = 0; y < board.length; y++){
      for (int x = 0; x < board.length; x++){
-       out += board[y][x] + " ";
+       if (board[y][x] < 0) out += "Q ";
+       else if (board[y][x] == 0) out += "_ ";
+       else out += "x ";
    }
    out += "\n";
  }
