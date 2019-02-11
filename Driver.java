@@ -7,9 +7,9 @@ public class Driver{
     // q.addQueen(0,0);
     // System.out.println(q);
     // q.removeQueen(0,0);
-    System.out.println(q);
-    q.solve();
-     System.out.println(q);
-    // System.out.println(q.countSolutions());
+    //System.out.println(q);
+    //q.solve();
+    //System.out.println(q);
+    System.out.println(q.countSolutions());
   }
 }

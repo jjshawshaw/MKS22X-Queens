@@ -128,23 +128,24 @@ else{
  *@throws IllegalStateException when the board starts with any non-zero value
  */
  public int countSolutions(){
-clear();
-return s(0, 0);
-}
-
-private int s(int x, int count){
-  for (int y = 0; y < board.length; y++){
-    if (board[y][x] == 0){
-      addQueen(y, x);
-      System.out.println(toString());
-      if (x + 1 != board.length){
-         s(x + 1, count);
-         removeQueen(y, x);
-      }else count += 1;
+   return cs(0, 0);
+ }
+ private int cs(int x, int count){
+   if (x == board.length){
+     //System.out.println(toString());
+      return 1;
+   }
+   else {
+     for (int y = 0; y < board.length; y++){
+       if (board[y][x] == 0){
+         addQueen(y, x);
+        count += cs(x + 1, 0);
+        removeQueen(y, x);
+      }
     }
   }
-  clear();
-  return count;
-}
+   return count;
+ }
+
 
 }
