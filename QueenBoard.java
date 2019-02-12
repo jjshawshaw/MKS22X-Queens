@@ -6,7 +6,7 @@ public class QueenBoard{
       clear();
     }
 
-  private void clear(){
+  public void clear(){
     for (int x = 0; x < board.length; x++){
       for (int y = 0; y < board.length; y++){
           board[y][x] = 0;
@@ -108,6 +108,11 @@ else{
 
  */
  public boolean solve(){
+   for (int x = 0; x < board.length; x++){
+     for (int y = 0; y < board.length; y++){
+         if (board[y][x] != 0) throw new IllegalStateException();
+     }
+   }
    return s(0);
  }
  private boolean s(int x){
@@ -124,11 +129,18 @@ else{
  }
 
  /**
- *@r  eturn the number of solutions found, and leaves the board filled with only 0's
+ *@return the number of solutions found, and leaves the board filled with only 0's
  *@throws IllegalStateException when the board starts with any non-zero value
  */
  public int countSolutions(){
-   return cs(0, 0);
+   for (int x = 0; x < board.length; x++){
+     for (int y = 0; y < board.length; y++){
+         if (board[y][x] != 0) throw new IllegalStateException();
+     }
+   }
+   int out = cs(0, 0);
+   clear();
+   return out;
  }
  private int cs(int x, int count){
    if (x == board.length){
